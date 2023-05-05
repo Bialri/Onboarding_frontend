@@ -6,9 +6,11 @@
                     <a @click.prevent="this.$emit('select','users')" class="nav-link" href="#">Пользователи</a>
                 </li>
                 <li class="nav-item">
-                    <a @click.prevent="this.$emit('select','notifications')" class="nav-link" href="#">Link</a>
+                    <a @click.prevent="this.$emit('select','profile_edit')" class="nav-link" href="#">Редактировать профиль</a>
                 </li>
-
+                <li class="nav-item">
+                    <a @click.prevent="this.$emit('select','notifications')" class="nav-link" href="#">Уведомления</a>
+                </li>
             </ul>
         </div>
     </nav>

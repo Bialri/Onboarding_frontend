@@ -2,6 +2,8 @@
 <HrNavBar @select="setBlock"/>
     <div class="container cont">
         <NewbiesControl @update_newbie="UpdateUser()" v-bind:user="user" v-if="block==='users'"/>
+        <ProfileEdit @update_newbie="UpdateUser()" v-bind:user="user" v-if="block==='profile_edit'"/>
+        <NotificationsComp v-if="block==='notifications'"/>
     </div>
 
 </template>
@@ -9,11 +11,15 @@
 <script>
 import HrNavBar from "@/components/HrNavBar.vue";
 import NewbiesControl from "@/components/NewbiesControl.vue";
+import ProfileEdit from "@/components/ProfileEdit.vue";
+import NotificationsComp from "@/components/NotificationsComp.vue";
 export default {
     name: 'HrProfile',
     components:{
         HrNavBar,
         NewbiesControl,
+        ProfileEdit,
+        NotificationsComp,
     },
     data(){
         return{

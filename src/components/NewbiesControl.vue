@@ -5,20 +5,45 @@
     </div>
 
     <div style="margin-top: 40px; position:static" >
-        <div class="container border border-white rounded-4" v-for="newbie in this.user.newbies">
+        <div class="row mt-3">
+            <div class="col"></div>
+            <div class="col"><p class="fw-bold">Имя</p></div>
+            <div class="col"><p class="fw-bold">Фамилия</p></div>
+            <div class="col"><p class="fw-bold">Отдел</p></div>
+            <div class="col"><p class="fw-bold">Должность</p></div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+        <div v-for="newbie in this.user.newbies" style="margin-bottom: 30px">
             <div v-if="edit_newbie!==newbie.pk">
-                <img :src="newbie.user.avatar" class="d-block rounded" alt="..." style="height: 40px;width: 40px;position: relative; top: 10px">
-                <span style="position:relative ;bottom: 20px; margin-left: 50px">{{newbie.user.firstname}}</span>
-                <span style="position:relative ;bottom: 20px; margin-left: 10px">{{newbie.user.lastname}}</span>
-                <span style="position:relative ;bottom: 20px; margin-left: 10px">{{newbie.department.name}}</span>
-                <button @click="edit_newbie=newbie.pk" class="btn btn-light " style="position:relative;bottom: 20px; margin-left: 10px">Редактировать</button>
-                <button @click="DeleteNewbie(newbie.user.pk)" class="btn btn-danger" style="position:relative;bottom: 20px; margin-left: 10px">Удалить</button>
+                <div class="row border border-white rounded-4 p-3">
+                    <div class="col">
+                        <img :src="newbie.user.avatar" class="rounded" style="width: 40px;height: 40px">
+                    </div>
+                    <div class="col">
+                        <p>{{newbie.user.firstname}}</p>
+                    </div>
+                    <div class="col">
+                        <p>{{newbie.user.lastname}}</p>
+                    </div>
+                    <div class="col">
+                        <p>{{newbie.department.name}}</p>
+                    </div>
+                    <div class="col">
+                        <p>{{newbie.position}}</p>
+                    </div>
+                    <div class="col">
+                        <button @click="edit_newbie=newbie.pk" class="btn btn-light ">Редактировать</button>
+                    </div>
+                    <div class="col">
+                        <button @click="DeleteNewbie(newbie.user.pk)" class="btn btn-danger">Удалить</button>
+                    </div>
+                </div>
+                <p v-if="display_error" class="text-center text-danger">Произошла ошибка</p>
             </div>
             <NewbieUpdateForm @update_newbie="CloseUpdateForm()" v-bind:newbie="newbie" v-bind:departments="departments" v-if="edit_newbie===newbie.pk"/>
         </div>
-        <p v-if="display_error" class="text-center text-danger">Произошла ошибка</p>
     </div>
-
 </template>
 
 <script>
