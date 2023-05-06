@@ -23,7 +23,7 @@ export default {
     methods:{
         get_user_data() {
             let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-            axios.get('http://localhost:8000/api/auth/me/', {headers})
+            axios.get('https://backend.kardasov.ru/api/auth/me/', {headers})
                 .then((response) => {
                     this.user = response.data
                     if(this.user.hasOwnProperty('newbies')){

@@ -79,7 +79,7 @@ export default {
     methods:{
       get_notifications(){
           let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-          axios.get('http://localhost:8000/api/notifications/',{headers})
+          axios.get('https://backend.kardasov.ru/api/notifications/',{headers})
               .then((response) => {
                   this.notifications = response.data
                   this.display_error = false
@@ -92,7 +92,7 @@ export default {
       open_desc(pk){
           this.view_description=pk
           let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-          axios.patch('http://localhost:8000/api/notifications/update/' + pk + '/', this.update_read ,{headers})
+          axios.patch('https://backend.kardasov.ru/api/notifications/update/' + pk + '/', this.update_read ,{headers})
               .then((response) => {
                   this.display_error = false
 

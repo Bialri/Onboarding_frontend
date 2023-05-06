@@ -34,7 +34,7 @@ export default {
     methods:{
         update(){
             let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-            axios.patch('http://localhost:8000/api/auth/hr/update/'+ this.user.pk + '/', this.update_hr,
+            axios.patch('https://backend.kardasov.ru/api/auth/hr/update/'+ this.user.pk + '/', this.update_hr,
                 {headers})
                 .then((response) => {
                     this.$emit('update_newbie')

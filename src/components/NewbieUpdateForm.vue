@@ -42,7 +42,7 @@ export default {
     methods:{
       Update_newbie(){
           let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-          axios.patch('http://localhost:8000/api/auth/newbie/update/'+ this.newbie.pk + '/', this.update_newbie_obj,
+          axios.patch('https://backend.kardasov.ru/api/auth/newbie/update/'+ this.newbie.pk + '/', this.update_newbie_obj,
               {headers})
               .then((response) => {
                   this.$emit('update_newbie')

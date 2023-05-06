@@ -70,7 +70,7 @@ export default {
     methods:{
         GetDepartments(){
             let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-            axios.get('http://localhost:8000/api/auth/department/getall/', {headers})
+            axios.get('https://backend.kardasov.ru/api/auth/department/getall/', {headers})
                 .then((response) => {
                     this.departments = response.data
 
@@ -86,7 +86,7 @@ export default {
         },
         DeleteNewbie(pk){
             let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-            axios.delete('http://localhost:8000/api/auth/user/delete/' + pk + '/', {headers})
+            axios.delete('https://backend.kardasov.ru/api/auth/user/delete/' + pk + '/', {headers})
                 .then((response) => {
                     this.$emit('update_newbie')
                     this.display_error = false

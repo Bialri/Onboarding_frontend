@@ -66,7 +66,7 @@ export default {
         },
         addNewbie(){
             let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-            axios.post('http://localhost:8000/api/auth/newbie/register/', this.create_newbie ,{headers})
+            axios.post('https://backend.kardasov.ru/api/auth/newbie/register/', this.create_newbie ,{headers})
                 .then((response) => {
                     this.create_newbie = {
                         email:'',
@@ -85,7 +85,7 @@ export default {
         },
         GetDepartments(){
             let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-            axios.get('http://localhost:8000/api/auth/department/getall/', {headers})
+            axios.get('https://backend.kardasov.ru/api/auth/department/getall/', {headers})
                 .then((response) => {
                     this.departments = response.data
 

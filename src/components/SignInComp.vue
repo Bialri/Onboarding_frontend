@@ -51,7 +51,7 @@ export default {
     methods:{
         send_login(){
             console.log(this.login);
-            axios.post('http://localhost:8000/api/auth/token/',this.login)
+            axios.post('https://backend.kardasov.ru/api/auth/token/',this.login)
                 .then((response) => {
                     localStorage.setItem('access',response.data.access)
                     localStorage.setItem('refresh',response.data.refresh)
