@@ -4,17 +4,5 @@ services:
   vue:
     build: .
     restart: on-failure
-    volumes:
-      - 'dist_volume:/app/dist'
-
-  nginx:
-    image: nginx:1.21-alpine
-    restart: on-failure
-    volumes:
-      - 'dist_volume:/usr/share/nginx/html'
     ports:
-      - '8001:80'
-
-
-volumes:
-  dist_volume:
+      - '8001:8080'
