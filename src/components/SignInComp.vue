@@ -45,13 +45,15 @@ export default {
                 password:''
             },
             error400_flag:false,
-            error500_flag:false
+            error500_flag:false,
+            HOST:import.meta.env.VITE_HOST,
         }
     },
     methods:{
         send_login(){
             console.log(this.login);
-            axios.post('https://backend.kardasov.ru/api/auth/token/',this.login)
+            console.log(import.meta.env.VITE_HOST);
+            axios.post(this.HOST +'/api/auth/token/',this.login)
                 .then((response) => {
                     localStorage.setItem('access',response.data.access)
                     localStorage.setItem('refresh',response.data.refresh)

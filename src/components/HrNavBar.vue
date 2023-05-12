@@ -3,13 +3,16 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a @click.prevent="this.$emit('select','users')" class="nav-link" href="#">Пользователи</a>
+                    <a @click.prevent="this.$emit('select','users')" class="nav-link">Пользователи</a>
                 </li>
                 <li class="nav-item">
-                    <a @click.prevent="this.$emit('select','profile_edit')" class="nav-link" href="#">Редактировать профиль</a>
+                    <a @click.prevent="this.$emit('select','profile_edit')" class="nav-link">Редактировать профиль</a>
                 </li>
                 <li class="nav-item">
-                    <a @click.prevent="this.$emit('select','notifications')" class="nav-link" href="#">Уведомления</a>
+                    <a @click.prevent="this.$emit('select','notifications')" class="nav-link">Уведомления</a>
+                </li>
+                <li class="nav-item">
+                    <a @click.prevent="this.$emit('select','modules')" class="nav-link">Модули</a>
                 </li>
             </ul>
         </div>

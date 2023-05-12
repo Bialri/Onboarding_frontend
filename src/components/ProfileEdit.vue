@@ -28,13 +28,14 @@ export default {
               firstname: this.user.user.firstname,
               lastname: this.user.user.lastname
           },
-          error: false
+          error: false,
+          HOST:import.meta.env.VITE_HOST,
       }
     },
     methods:{
         update(){
             let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-            axios.patch('https://backend.kardasov.ru/api/auth/hr/update/'+ this.user.pk + '/', this.update_hr,
+            axios.patch(this.HOST +'/api/auth/hr/update/'+ this.user.pk + '/', this.update_hr,
                 {headers})
                 .then((response) => {
                     this.$emit('update_newbie')

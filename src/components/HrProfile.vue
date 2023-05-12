@@ -4,6 +4,7 @@
         <NewbiesControl @update_newbie="UpdateUser()" v-bind:user="user" v-if="block==='users'"/>
         <ProfileEdit @update_newbie="UpdateUser()" v-bind:user="user" v-if="block==='profile_edit'"/>
         <NotificationsComp v-if="block==='notifications'"/>
+        <ModuleComp v-if="block==='modules'"/>
     </div>
 
 </template>
@@ -13,6 +14,7 @@ import HrNavBar from "@/components/HrNavBar.vue";
 import NewbiesControl from "@/components/NewbiesControl.vue";
 import ProfileEdit from "@/components/ProfileEdit.vue";
 import NotificationsComp from "@/components/NotificationsComp.vue";
+import ModuleComp from "@/components/ModuleComp.vue";
 export default {
     name: 'HrProfile',
     components:{
@@ -20,6 +22,7 @@ export default {
         NewbiesControl,
         ProfileEdit,
         NotificationsComp,
+        ModuleComp,
     },
     data(){
         return{

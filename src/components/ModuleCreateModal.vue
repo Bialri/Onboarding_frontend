@@ -4,31 +4,26 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-dark">Добавить Сотрудника</h5>
+                    <h5 class="modal-title text-dark">Добавить Модуль</h5>
                     <button type="button" class="btn-close" @click="OpenCloseFun()" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <label class="form-label text-dark">Email</label>
-                        <input v-model="create_newbie.email" class="form-control" type="email"/>
-                        <label class="form-label text-dark">Пароль</label>
-                        <input v-model="create_newbie.password" class="form-control" type="password"/>
-                        <label class="form-label text-dark">Имя</label>
-                        <input v-model="create_newbie.firstname" class="form-control" type="text" />
-                        <label class="form-label text-dark">Фамилия</label>
-                        <input v-model="create_newbie.lastname" class="form-control" type="text" />
+                        <label class="form-label text-dark">Название</label>
+                        <input v-model="create_module.name" class="form-control" type="text"/>
+
+                        <label class="form-label text-dark">Описание</label>
+                        <input v-model="create_module.description" class="form-control" type="text"/>
+
                         <label class="form-label text-dark">Отдел</label>
-                        <select v-model="create_newbie.department_id" class="form-select" name="department_id">
+                        <select v-model="create_module.department" class="form-select" name="department">
                             <option v-for="department in departments" :value="department.pk">{{ department.name }}</option>
                         </select>
-                        <label class="form-label text-dark">Позиция</label>
-                        <input v-model="create_newbie.position" class="form-control" type="text" />
-                        <p v-if="display_error" class="text-center text-danger">Произошла ошибка</p>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" @click="OpenCloseFun()" :class="'btn btn-'+variant" data-bs-dismiss="modal">Закрыть</button>
-                    <button type="button" class="btn btn-success" @click="addNewbie()">Добавить</button>
+                    <button type="button" class="btn btn-success" @click="addModule()">Добавить</button>
                 </div>
             </div>
         </div>
@@ -37,9 +32,8 @@
 
 <script>
 import axios from "axios";
-
 export default {
-    name:"CreateNewbie",
+    name:"ModuleCreateModal",
     props:{
         visible:Boolean,
         variant:String,
@@ -47,15 +41,12 @@ export default {
     data(){
         return{
             OpenClose: this.visible,
-            create_newbie:{
-                email:'',
-                password:'',
-                firstname:'',
-                lastname:'',
-                department_id:1,
-                position:'',
+            create_module:{
+                name:'',
+                description:'',
+                department:-1,
             },
-            departments:{},
+            departments:[],
             display_error:false,
             HOST:import.meta.env.VITE_HOST,
         }
@@ -63,22 +54,19 @@ export default {
     methods:{
         OpenCloseFun() {
             this.OpenClose = !this.OpenClose;
-            this.$emit('close')
+            this.$emit('close_module')
         },
-        addNewbie(){
+        addModule(){
             let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-            axios.post(this.HOST +'/api/auth/newbie/register/', this.create_newbie ,{headers})
+            axios.post(this.HOST +'/api/tutorials/module/create/', this.create_module ,{headers})
                 .then((response) => {
-                    this.create_newbie = {
-                        email:'',
-                            password:'',
-                            firstname:'',
-                            lastname:'',
-                            department_id:1,
-                            position:'',
+                    this.create_manual = {
+                        name:'',
+                        description:'',
+                        department:-1,
                     }
                     this.OpenClose = !this.OpenClose;
-                    this.$emit('close')
+                    this.$emit('close_module')
                 })
                 .catch((error) => {
                     this.display_error = true

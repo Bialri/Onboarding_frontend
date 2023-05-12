@@ -73,13 +73,14 @@ export default {
             display_error: false,
             view_description:-1,
             update_read:{is_read:true},
-            cur_date: Date
+            cur_date: Date,
+            HOST:import.meta.env.VITE_HOST,
         }
     },
     methods:{
       get_notifications(){
           let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-          axios.get('https://backend.kardasov.ru/api/notifications/',{headers})
+          axios.get(this.HOST +'/api/notifications/',{headers})
               .then((response) => {
                   this.notifications = response.data
                   this.display_error = false
@@ -92,7 +93,7 @@ export default {
       open_desc(pk){
           this.view_description=pk
           let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-          axios.patch('https://backend.kardasov.ru/api/notifications/update/' + pk + '/', this.update_read ,{headers})
+          axios.patch(this.HOST +'/api/notifications/update/' + pk + '/', this.update_read ,{headers})
               .then((response) => {
                   this.display_error = false
 

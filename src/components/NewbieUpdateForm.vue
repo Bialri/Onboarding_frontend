@@ -37,12 +37,13 @@ export default {
                 position:this.newbie.position,
             },
             error:false,
+            HOST:import.meta.env.VITE_HOST,
         }
     },
     methods:{
       Update_newbie(){
           let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-          axios.patch('https://backend.kardasov.ru/api/auth/newbie/update/'+ this.newbie.pk + '/', this.update_newbie_obj,
+          axios.patch(this.HOST +'/api/auth/newbie/update/'+ this.newbie.pk + '/', this.update_newbie_obj,
               {headers})
               .then((response) => {
                   this.$emit('update_newbie')

@@ -17,13 +17,14 @@ export default {
             user:Object,
             display_error:false,
             is_hr:false,
+            HOST:import.meta.env.VITE_HOST,
         }
     },
 
     methods:{
         get_user_data() {
             let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-            axios.get('https://backend.kardasov.ru/api/auth/me/', {headers})
+            axios.get(this.HOST +'/api/auth/me/', {headers})
                 .then((response) => {
                     this.user = response.data
                     if(this.user.hasOwnProperty('newbies')){

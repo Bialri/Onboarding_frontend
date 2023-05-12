@@ -62,6 +62,7 @@ export default {
             departments:{},
             visible:false,
             display_error:false,
+            HOST:import.meta.env.VITE_HOST,
         }
     },
     props:{
@@ -70,7 +71,7 @@ export default {
     methods:{
         GetDepartments(){
             let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-            axios.get('https://backend.kardasov.ru/api/auth/department/getall/', {headers})
+            axios.get(this.HOST +'/api/auth/department/getall/', {headers})
                 .then((response) => {
                     this.departments = response.data
 
@@ -86,7 +87,7 @@ export default {
         },
         DeleteNewbie(pk){
             let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
-            axios.delete('https://backend.kardasov.ru/api/auth/user/delete/' + pk + '/', {headers})
+            axios.delete(this.HOST +'/api/auth/user/delete/' + pk + '/', {headers})
                 .then((response) => {
                     this.$emit('update_newbie')
                     this.display_error = false
