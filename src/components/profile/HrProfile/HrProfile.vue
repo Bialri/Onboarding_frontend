@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import HrNavBar from "@/components/HrNavBar.vue";
-import NewbiesControl from "@/components/NewbiesControl.vue";
-import ProfileEdit from "@/components/ProfileEdit.vue";
-import NotificationsComp from "@/components/NotificationsComp.vue";
-import ModuleComp from "@/components/ModuleComp.vue";
+import HrNavBar from "@/components/profile/HrProfile/HrNavBar.vue";
+import NewbiesControl from "@/components/profile/HrProfile/newbies_control/NewbiesControl.vue";
+import ProfileEdit from "@/components/profile/HrProfile/profile_edit/ProfileEdit.vue";
+import NotificationsComp from "@/components/profile/HrProfile/notifications_control/NotificationsComp.vue";
+import ModuleComp from "@/components/profile/HrProfile/modules_control/ModuleComp.vue";
 export default {
     name: 'HrProfile',
     components:{

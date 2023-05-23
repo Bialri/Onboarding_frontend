@@ -5,7 +5,7 @@
 
 <script>
 import axios from "axios";
-import HrProfile from "@/components/HrProfile.vue";
+import HrProfile from "@/components/profile/HrProfile/HrProfile.vue";
 
 export default {
     name:'ProfileComp',

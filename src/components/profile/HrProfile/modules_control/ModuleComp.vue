@@ -16,6 +16,11 @@
                 <div class="col-md-6">{{ module.name }}</div>
                 <div class="col">
                     <div v-if="view_module===module.pk">
+                        <button @click="DeleteModule(module.pk)" class="btn btn-danger">Удалить</button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div v-if="view_module===module.pk">
                       <button @click="()=>{visible_manuals = !visible_manuals}" class="btn btn-primary">Создать новый мануал</button>
                       <ManualCreateModal @close_manual="OpenCloseModalManual(module.pk)" :visible="visible_manuals" variant="primary"/>
                     </div>
@@ -33,6 +38,9 @@
                           <div class="col">{{ manual.name }}</div>
                           <div class="col">Описание: {{ manual.description }}</div>
                           <div class="col"><a :href="manual.file" class="link-light fw-bold" target="_blank">Ссылка на документ</a></div>
+                          <div class="col">
+                              <button class="btn btn-danger" @click="DeleteManual(manual.pk)">Удалить</button>
+                          </div>
                           <div class="col">
                               <button class="btn btn-primary" @click="edit_manual=manual.pk">Редактировать</button>
                           </div>
@@ -52,10 +60,10 @@
 
 <script>
 import axios from "axios";
-import ManualUpdateForm from "@/components/ManualUpdateForm.vue";
-import ManualCreateModal from "@/components/ManualCreateModal.vue";
-import CreateNewbie from "@/components/CreateNewbie.vue";
-import ModuleCreateModal from "@/components/ModuleCreateModal.vue";
+import ManualUpdateForm from "@/components/profile/HrProfile/modules_control/ManualUpdateForm.vue";
+import ManualCreateModal from "@/components/profile/HrProfile/modules_control/ManualCreateModal.vue";
+import CreateNewbie from "@/components/profile/HrProfile/newbies_control/CreateNewbie.vue";
+import ModuleCreateModal from "@/components/profile/HrProfile/modules_control/ModuleCreateModal.vue";
 export default {
     name:"ModuleComp",
     data(){
@@ -111,6 +119,29 @@ export default {
         OpenCloseModalModule(){
             this.visible_modules = !this.visible_modules
             this.get_modules();
+        },
+        DeleteManual(pk){
+            let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
+            axios.delete(this.HOST +'/api/tutorials/manual/delete/'+ pk +'/',{headers})
+                .then((response) => {
+                    this.view_module=-1;
+                    this.display_error = false
+                })
+                .catch((error) => {
+                    this.display_error = true
+                })
+        },
+        DeleteModule(pk){
+            let headers = {'Authorization': "Bearer " + localStorage.getItem('access')}
+            axios.delete(this.HOST +'/api/tutorials/module/delete/'+ pk +'/',{headers})
+                .then((response) => {
+                    this.view_module=-1;
+                    this.get_modules();
+                    this.display_error = false
+                })
+                .catch((error) => {
+                    this.display_error = true
+                })
         }
     },
     mounted() {

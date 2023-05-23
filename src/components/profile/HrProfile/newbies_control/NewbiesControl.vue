@@ -48,8 +48,8 @@
 
 <script>
 import axios from "axios";
-import NewbieUpdateForm from "@/components/NewbieUpdateForm.vue";
-import CreateNewbie from "@/components/CreateNewbie.vue";
+import NewbieUpdateForm from "@/components/profile/HrProfile/newbies_control/NewbieUpdateForm.vue";
+import CreateNewbie from "@/components/profile/HrProfile/newbies_control/CreateNewbie.vue";
 export default {
     name: "NewbiesControl",
     components:{
